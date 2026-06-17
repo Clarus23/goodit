@@ -1,6 +1,5 @@
 package kr.goodit.assignment.common.response;
 
-import kr.goodit.assignment.common.exception.ErrorResponse;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -23,8 +22,7 @@ public class ApiResponseAdvice implements ResponseBodyAdvice<Object> {
                                   Class<? extends HttpMessageConverter<?>> selectedConverterType,
                                   ServerHttpRequest request, ServerHttpResponse response) {
 
-        if(body instanceof ApiResponse || body instanceof ErrorResponse)
-            return body;
+        if(body instanceof ApiResponse) return body;
 
         return ApiResponse.success(body);
     }
