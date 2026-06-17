@@ -6,8 +6,8 @@ import kr.goodit.assignment.member.domain.Member;
 import kr.goodit.assignment.member.dto.MemberResponse;
 import kr.goodit.assignment.member.dto.MemberSignupRequest;
 import kr.goodit.assignment.member.repository.MemberRepository;
+import kr.goodit.assignment.member.security.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -57,22 +57,10 @@ public class MemberServiceImpl implements MemberService, UserDetailsService {
     }
 
     @Override
-    public MemberResponse findByUsername(String username) {
-        Member member = memberRepository.findByUsername(username)
-                .orElseThrow(() -> new BusinessException(ErrorCode.NOT_FOUND_MEMBER));
-
-        return MemberResponse.from(member);
-    }
-
-    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Member member = memberRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("[" + username + "] 회원을 찾을 수 없습니다."));
 
-        return User.builder()
-                .username(member.getUsername())
-                .password(member.getPassword())
-                .roles("USER")
-                .build();
+        return new CustomUserDetails(member);
     }
 }
