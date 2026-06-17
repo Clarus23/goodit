@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface MemberService {
     // 회원가입
-    public MemberResponse signup(MemberSignupRequest request);
+    MemberResponse signup(MemberSignupRequest request);
 
     // 전체 회원 조회
-    public List<MemberResponse> getMembers();
+    List<MemberResponse> getMembers();
 
     // 단일 회원 조회
-    public MemberResponse getMember(Integer memberId);
+    MemberResponse getMember(Integer memberId);
 }
