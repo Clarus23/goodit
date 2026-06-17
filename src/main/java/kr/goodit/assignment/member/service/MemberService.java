@@ -14,4 +14,5 @@ public interface MemberService {
 
     // 단일 회원 조회
     MemberResponse getMember(Integer memberId);
+    MemberResponse findByUsername(String username);
 }
