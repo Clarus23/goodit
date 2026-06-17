@@ -7,6 +7,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public enum ErrorCode {
 
+    // Member
+    DUPLICATE_USERNAME(409, "이미 사용중인 사용자명입니다."),
+    DUPLICATE_EMAIL(409, "이미 사용중인 이메일입니다."),
+    NOT_FOUND_MEMBER(404, "존재하지 않는 회원입니다."),
+
+    // 전역
     NOT_FOUND(404, "리소스를 찾을 수 없습니다."),
     DUPLICATE(409, "이미 존재하는 값입니다."),
     INVALID_INPUT(400, "입력값이 올바르지 않습니다."),
