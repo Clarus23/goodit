@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/mypage")
-@RequiredArgsConstructor
 public class MyPageController {
 
     @GetMapping
