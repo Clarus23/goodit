@@ -18,6 +18,8 @@ public class MyPageController {
 
     @GetMapping
     public String index(@AuthenticationPrincipal UserDetails userDetails, Model model) {
+        if(userDetails == null) return "redirect:/login";
+
         MemberResponse member = memberService.findByUsername(userDetails.getUsername());
         model.addAttribute("member", member);
         return "mypage/index";
