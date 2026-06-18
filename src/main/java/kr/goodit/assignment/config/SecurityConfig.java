@@ -25,7 +25,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
-                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**", "/login"))
+                .csrf(csrf -> csrf.ignoringRequestMatchers("/api/**", "/login")) // postman test를 위해 /login 경로도 csrf 비활성화
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.POST, "/api/v1/members").permitAll()
                         .requestMatchers("/login", "/error").permitAll()
