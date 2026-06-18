@@ -23,6 +23,7 @@ public class ApiResponseAdvice implements ResponseBodyAdvice<Object> {
                                   ServerHttpRequest request, ServerHttpResponse response) {
 
         if(body instanceof ApiResponse) return body;
+        if(request.getURI().getPath().equals("/error")) return body;
 
         return ApiResponse.success(body);
     }
